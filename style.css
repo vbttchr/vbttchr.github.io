@@ -5,3 +5,11 @@ html {
 p, h1 {
     color: white;
 }
+
+@font-face {
+    font-family: 'optima_stdmedium';
+    src: url('optimaltstd-medium-webfont.woff2') format('woff2'),
+        url('optimaltstd-medium-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+} 
