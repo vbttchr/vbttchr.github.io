@@ -5,13 +5,13 @@
     box-sizing: border-box;
 }
 body{
-    background: #6c6c69;
+    background: #c7c7b0;
     color: black;
 }
 #header{
     width: 100%;
     height: 100vh;
-    background-image: url(images/me.jpg);
+    background-image: url(images/me.png);
     background-size: cover;
     background-position: center;
 }
