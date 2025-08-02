@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>3-Side Border Animation</title>
+  <style>
+    .box-container {
+      position: relative;
+      width: 300px;
+      height: 150px;
+      margin: 100px auto;
+      background: #f0f0f0;
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    .box-border {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      border-radius: 16px;
+    }
+
+    .box-border svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    .box-border path {
+      fill: none;
+      stroke: #3498db;
+      stroke-width: 4;
+      stroke-linecap: round;
+      stroke-dasharray: 675;          /* Total path length of the 3 sides */
+      stroke-dashoffset: 675;
+      transition: stroke-dashoffset 2s ease-in-out;
+    }
+
+    .box-container:hover .box-border path {
+      stroke-dashoffset: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="box-container">
+    <!-- You can add content here -->
+    <div class="box-border">
+      <svg viewBox="0 0 300 150" preserveAspectRatio="none">
+        <!-- Start top-left → top-right → bottom-right → bottom-left (stop here) -->
+        <path d="M0,0 H284 A16,16 0 0 1 300,16 V134 A16,16 0 0 1 284,150 H40"/>
+        <!-- No final vertical edge to top-left -->
+      </svg>
+    </div>
+  </div>
+
+</body>
+</html>
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Animated Border on Hover</title>
+  <style>
+    .box-container {
+      position: relative;
+      width: 300px;
+      height: 150px;
+      margin: 100px auto;
+      background: #f0f0f0;
+      overflow: hidden;
+      border-radius: 10px;
+    }
+
+    .box-border {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      width: 50%;
+      height: 100%;
+      pointer-events: none;
+    }
+
+    .box-border svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    .box-border rect {
+      fill: none;
+      stroke: #3498db;
+      stroke-width: 4;
+      stroke-dasharray: 900;       /* Total length of rectangle path */
+      stroke-dashoffset: 900;
+      transition: stroke-dashoffset 1.5s ease-in-out;
+    }
+
+    .box-container:hover .box-border rect {
+      stroke-dashoffset: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="box-container">
+    <div class="box-border">
+      <svg viewBox="0 0 300 150" preserveAspectRatio="none">
+        <rect x="0" y="0" width="300" height="150" />
+      </svg>
+    </div>
+    <!-- You can put content here -->
+  </div>
+
+</body>
+</html> -->
+

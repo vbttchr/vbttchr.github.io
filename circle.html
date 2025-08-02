@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>3-Side Border Animation</title>
+
+</head>
+<body>
+  <style>
+
+    svg {
+      width: 100%;
+      height: auto; /* optional, but reinforces intent */
+      color: wheat;
+      display: block;
+      max-width: 400px; /* optional cap on very wide screens */
+      margin: 0 auto;   /* center in grid cell */
+    }
+    svg > circle{
+      aspect-ratio: 1 / 1;
+    }
+    main{
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      width: 95vw;
+    }
+
+    .circle1wrap, .circle2wrap, .circle3wrap{
+      flex: 1;
+    }
+    .circle1 > circle{
+      stroke-dasharray: 0,1256;
+      stroke-dashoffset: -316;
+      transition: all 0.4s cubic-bezier(1, 0.35, 0, 0.65);
+    }
+
+    .circle1:hover > circle{
+      stroke-dasharray: 1257,0;
+      stroke-dashoffset: -316;
+    }
+
+    .circle2 > circle{
+      stroke-dasharray: 0,1256;
+      stroke-dashoffset: 316;
+      transition: all 0.4s cubic-bezier(1, 0.35, 0, 0.65);
+    }
+
+    .circle2:hover > circle{
+      stroke-dasharray: 1256,0;
+      stroke-dashoffset: 942;
+    }
+
+    .circle3 > circle{
+      stroke-dasharray: 0,1256;
+      stroke-dashoffset: -316;
+      transition: all 0.4s cubic-bezier(1, 0.35, 0, 0.65);
+    }
+
+    .circle3:hover > circle{
+      stroke-dasharray: 1256,0;
+      stroke-dashoffset: 942;
+    }
+
+    .rect1, .rect2, .rect3 {
+      --StrokeDashArray: 0, 100;
+      --StrokeDashOffset:-37.5;
+      stroke-dasharray: var(--StrokeDashArray);
+      stroke-dashoffset: var(--StrokeDashOffset);
+      transition: all 0.75s cubic-bezier(0.661, 0.069, 0.484, 1.043);
+      vertical-align: middle;
+    }
+
+  </style>
+  <main>
+    <div class="circle1wrap">
+      <svg class="circle1" 
+      viewBox="0 0 500 500">
+        <circle cx="250" cy="250" r="200"
+        stroke="currentColor" stroke-width="25"
+        fill="transparent" />
+        <text x="250" y="250" text-anchor="middle"
+            stroke="black"
+            stroke-width="0.2px" fill="wheat" font-size="24px"
+            alignment-baseline="middle"> Hover here
+        </text>
+      </svg>
+    </div>
+    <div class="circle2wrap">
+      <svg class="circle2" 
+      viewBox="0 0 500 500">
+        <circle cx="250" cy="250" r="200"
+        stroke="currentColor" stroke-width="25"
+        fill="transparent" />
+        <text x="250" y="250" text-anchor="middle"
+          stroke="black"
+          stroke-width="0.2px" fill="wheat" font-size="24px"
+          alignment-baseline="middle"> or here
+        </text>
+      </svg>
+    </div>
+    <div class="circle3wrap">
+      <svg class="circle3"
+      viewBox="0 0 500 500">
+        <circle cx="250" cy="250" r="200"
+        stroke="currentColor" stroke-width="25"
+        fill="transparent" />
+        <text x="250" y="250" text-anchor="middle"
+          stroke="black"
+          stroke-width="0.2px" fill="wheat" font-size="24px"
+          alignment-baseline="middle"> or over here ^_^
+        </text>
+      </svg>
+    </div>
+    <div class="rect1wrap">
+      <svg class="rect-wrapper1" viewBox="0 0 100 50">
+        <rect class="rect1" x=5 y=10 width=90 height=30
+        rx="10" ry="10"
+        fill="none" stroke="currentColor" stroke-width="5"/>
+        <text x="50" y="25" text-anchor="middle"
+          stroke="black"
+          stroke-width="0.05px" fill="wheat" font-size="6px"
+          alignment-baseline="middle"> click this!
+        </text>
+      </svg>
+    </div>
+    <div class="rect2wrap">
+      <svg class="rect-wrapper2" viewBox="0 0 100 50">
+        <rect class="rect2" x=5 y=10 width=90 height=30
+        rx="10" ry="10"
+        fill="none" stroke="currentColor" stroke-width="5"/>
+        <text x="50" y="25" text-anchor="middle"
+          stroke="black"
+          stroke-width="0.05px" fill="wheat" font-size="6px"
+          alignment-baseline="middle"> or this one?
+        </text>
+      </svg>
+    </div>
+    <div class="rect3wrap">
+      <svg class="rect-wrapper3" viewBox="0 0 100 50">
+        <rect class="rect3" x=5 y=10 width=90 height=30
+        rx="10" ry="10"
+        fill="none" stroke="currentColor" stroke-width="5"/>
+        <text x="50" y="25" text-anchor="middle"
+          stroke="black"
+          stroke-width="0.05px" fill="wheat" font-size="6px"
+          alignment-baseline="middle" vertical-align="middle"> how about that one?
+        </text>
+      </svg>
+    </div>
+
+  </main>
+
+</body>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const rectWrappers1 = document.querySelectorAll('.rect-wrapper1');
+  const rectWrappers2 = document.querySelectorAll('.rect-wrapper2');
+  const rectWrappers3 = document.querySelectorAll('.rect-wrapper3');
+  let focusedEntry = null;
+
+  rectWrappers1.forEach(rectWrapper => {
+    const rect = rectWrapper.querySelector('.rect1');
+    const rectLength = rect.getTotalLength();
+    const xLen = rect.getAttribute('width') - 2 * rect.getAttribute('rx');
+    const yLen = rect.getAttribute('height') - 2 * rect.getAttribute('rx');
+    const rLen = 2 * 3.14156265 * rect.getAttribute('rx') / 4;
+    if (!rect) return;
+    rect.dataset.focused = "false"; // Ensure it's initialized
+    rect.style.setProperty('--StrokeDashOffset',`${-xLen/2}`)
+    rect.style.setProperty('--StrokeDashArray', `0,${rectLength}`);
+    rectWrapper.addEventListener('click', () => {
+      if (rect.dataset.focused === "true") {
+        rect.style.setProperty('--StrokeDashOffset',`${-xLen/2}`)
+        rect.style.setProperty('--StrokeDashArray', `0,${rectLength}`);
+        rect.dataset.focused = "false";
+      } 
+
+      else {
+        rect.style.setProperty('--StrokeDashOffset',`${-xLen/2}`)
+        rect.style.setProperty('--StrokeDashArray', `${rectLength},0`);
+        rect.dataset.focused = "true";
+        focusedEntry = rect;
+      }
+
+    })
+  });
+
+  rectWrappers2.forEach(rectWrapper => {
+    const rect = rectWrapper.querySelector('.rect2');
+    const rectLength = rect.getTotalLength();
+    const xLen = rect.getAttribute('width') - 2 * rect.getAttribute('rx');
+    const yLen = rect.getAttribute('height') - 2 * rect.getAttribute('rx');
+    const rLen = 2 * 3.14156265 * rect.getAttribute('rx') / 4;
+    if (!rect) return;
+    rect.dataset.focused = "false"; // Ensure it's initialized
+    rect.style.setProperty('--StrokeDashOffset',`${-xLen/2}`)
+    rect.style.setProperty('--StrokeDashArray',`0,${rectLength}`)
+    rectWrapper.addEventListener('click', () => {
+      if (rect.dataset.focused === "true") {
+        rect.style.setProperty('--StrokeDashOffset',`${-xLen/2}`)
+        rect.style.setProperty('--StrokeDashArray',`0,${rectLength}`)
+        rect.dataset.focused = "false";
+      } 
+
+      else {
+        rect.style.setProperty('--StrokeDashOffset',`${-xLen/2+rectLength/2}`)
+        rect.style.setProperty('--StrokeDashArray',`${rectLength},0`)
+        rect.dataset.focused = "true";
+        focusedEntry = rect;
+      }
+
+    })
+  });
+
+  rectWrappers3.forEach(rectWrapper => {
+    const rect = rectWrapper.querySelector('.rect3');
+    const rectLength = rect.getTotalLength();
+    const xLen = rect.getAttribute('width') - 2 * rect.getAttribute('rx');
+    const yLen = rect.getAttribute('height') - 2 * rect.getAttribute('rx');
+    const rLen = 2 * 3.14156265 * rect.getAttribute('rx') / 4;
+    if (!rect) return;
+    rect.dataset.focused = "false"; // Ensure it's initialized
+    rect.style.setProperty('--StrokeDashOffset',`${-xLen/2}`)
+    rect.style.setProperty('--StrokeDashArray', `0,${rectLength}`);
+    rectWrapper.addEventListener('click', () => {
+      if (rect.dataset.focused === "true") {
+        rect.style.setProperty('--StrokeDashOffset',`${-xLen/2}`)
+        rect.style.setProperty('--StrokeDashArray', `0,${rectLength}`);
+        rect.dataset.focused = "false";
+      } 
+
+      else {
+        rect.style.setProperty('--StrokeDashOffset',`${-xLen/2+rectLength}`)
+        rect.style.setProperty('--StrokeDashArray', `${rectLength},0`);
+        rect.dataset.focused = "true";
+        focusedEntry = rect;
+      }
+
+    })
+  });
+});
+</script>
+</html>

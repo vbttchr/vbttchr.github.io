@@ -1,0 +1,119 @@
+<html>
+  <style>
+    
+    /* .my-svg{
+      overflow: hidden;
+    } */
+
+    #my-rect {
+      --StrokeDashArray: 20;
+      --StrokeDashOffset:0;
+      --StrokeWidth: 12;
+      stroke: rgb(0, 0, 0);
+      stroke-width: var(--StrokeWidth);
+      stroke-linecap: round;
+      stroke-dashoffset: var(--StrokeDashOffset);
+      stroke-dasharray: var(--StrokeDashArray);
+      fill: rgb(255, 0, 0);
+      /* clip-path: none; */
+      clip-path: url(#my-clip-path);
+    }
+    #my-rect.transition{
+      transition: all 1s cubic-bezier(0.661, 0.069, 0.484, 1.043);
+    }
+
+    #my-rect, #my-other-rect,
+    #my-clip-path-rect {
+      x: 0px;
+      y: 0px;
+      width: 300;
+      height: 100;
+      /* rx: 20px; */
+      /* ry: 20px; */
+      /* x="22" y="22" width="176" height="76" rx="48" ry="48" */
+    }
+    
+    #my-other-rect {
+      stroke: rgb(0, 0, 0);
+      stroke-width: 12px;
+      fill: rgb(255, 0, 0);
+    }
+  </style>
+  <body>
+    <svg class="my-svg">
+      <defs>
+        <clipPath id="my-clip-path">
+          <rect id="my-clip-path-rect" />
+        </clipPath>
+      </defs>
+      
+      <rect id="my-rect" />
+    </svg>
+
+    <svg class="my-svg">
+      <defs>
+        <clipPath id="my-clip-path">
+          <rect id="my-clip-path-rect" />
+        </clipPath>
+      </defs>
+      
+      <rect id="my-rect" />
+    </svg>
+  </body>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const entries = document.querySelectorAll('.my-svg');
+
+      entries.forEach(entry => {
+        const boxRect = entry.querySelector('#my-rect');
+        const boxRectClipPath = entry.querySelector('#my-clip-path-rect');
+        if (boxRect==null) {return}
+        // Cannot use .getTotalLength because the box is smaller 
+        // effectively due to clip-path!
+        // const boxRectLength = boxRect.getTotalLength();
+        const boxRectSizeInfo = boxRect.getBoundingClientRect();
+        const strokeWidth = parseFloat(getComputedStyle(boxRect).strokeWidth);
+
+        const radius = 20;
+        boxRect.setAttribute('rx',`${radius}`)
+        boxRect.setAttribute('ry',`${radius}`)
+        boxRectClipPath.setAttribute('rx',`${radius}`)
+        boxRectClipPath.setAttribute('ry',`${radius}`)
+
+        console.log(radius)
+        const xLen = boxRectSizeInfo.width-strokeWidth - 2 * radius;
+        const yLen = boxRectSizeInfo.height-strokeWidth - 2 * radius;
+        const rLen = (radius * 2 * 3.14156265)/4;
+        const boxRectLength = 2 * xLen + 2 * yLen + 4 * rLen;
+        console.log(`boxRectLength: ${boxRectLength}`)
+
+        function setRect() {
+          boxRect.style.setProperty('--StrokeDashOffset',`${-xLen/2}`) 
+          boxRect.style.setProperty('--StrokeDashArray', `0,${boxRectLength}`)
+          boxRect.classList.remove('transition');
+        }
+        setRect()
+        entry.dataset.focused = "false";
+        entry.addEventListener('click', () => {
+          boxRect.classList.add('transition');
+          function focusRect() {
+            boxRect.style.setProperty('--StrokeDashOffset',`${-xLen/2+boxRectLength/2}`) 
+            boxRect.style.setProperty('--StrokeDashArray', `${boxRectLength},0`)
+            entry.dataset.focused = "true";
+          }
+          function unfocusRect() {
+            boxRect.style.setProperty('--StrokeDashOffset',`${-xLen/2}`) 
+            boxRect.style.setProperty('--StrokeDashArray', `0,${boxRectLength}`)
+            entry.dataset.focused = "false";
+          }
+          if (entry.dataset.focused==="false") {
+            focusRect()
+          }
+          else {
+            unfocusRect()
+          }
+        })
+      })
+    })
+  </script>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SVG Outline in Flex Absolute</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      position: relative;
+    }
+
+    .parent {
+      position: absolute;
+      top: 50px;
+      left: 50px;
+      width: 300px;
+      height: 80%;
+      background-color: #f5f5f5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid #aaa;
+    }
+
+    .myRect-svg {
+      /* display: block; */
+      position:absolute;
+      top: 0;
+      left:0;
+      height: 100%;
+      width: 100%;
+    }
+
+    .myRect {
+      fill: none;
+      stroke: steelblue;
+      stroke-width: 2;
+      position: absolute;
+      top: 0;
+      left: 0;
+
+      display:block;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="parent">
+    <svg class="myRect-svg" preserveAspectRatio="none">
+      <rect class="myRect" x="0" y="0" width="100%" height="100%"/>
+    </svg>
+    <div>Other flex content</div>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,95 @@
+.header{
+    height: 55px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    align-content: space-between;
+    
+    position: fixed;
+    top: 0px;
+    left:0px;
+    right: 0px;
+    z-index: 100;
+
+    margin-left: 3vw;
+    margin-right: 3vw;
+    padding-top: 3vh;
+
+    background-color: none;
+    border-bottom-width: 3px;
+    border-bottom-style: solid;
+    border-bottom-color: #696969;
+    /* font-size: 20px; */
+}
+
+
+.header-logo{
+    /* width: 70px; */
+    display: flex;
+    /* flex: 1; */
+    width: 80px;
+    height: 100%;
+    align-items: center;
+    background-image: url('../images/fox-doodle-waving.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.header-logo:hover{
+    background-image: url('../images/fox-doodle-waving.gif');
+}
+
+.header-navbar{
+    display: flex;
+    flex: 500px;
+    flex-grow: 0;
+}
+
+.header-navbar ul{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    list-style-type: none;
+    text-decoration: none;
+    margin: 0 auto;
+    padding: 0;
+    width: 100%;
+}
+
+.header-navbar ul li a{
+    display: inline-block;
+    color: #000;
+    text-decoration: none;
+    position: relative;
+    padding: 0.1em 0.4em;
+    transform: skew(0deg);
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.header-navbar ul li a:hover{
+    color: #696969;
+    transform: skew(-10deg);
+}
+
+.header-navbar ul li a span{
+    display:inline;
+    position:relative;
+}
+.header-navbar ul li a span::after{
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: -3px;
+    width: 0;
+    height: 3px;
+    background: #696969;
+    transform: translateX(-50%);
+    transition: width 0.3s ease;
+    
+}
+
+.header-navbar ul li a:hover span::after{
+    width: 100%;
+}
