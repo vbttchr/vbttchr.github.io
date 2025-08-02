@@ -1,0 +1,30 @@
+:root{
+  --black: #111;
+  --dark: #232323;
+  --cream: #f7e9d8;
+  --cream-10: #f1e2d0;
+  --white: #fffcf9;
+}
+
+html {
+    font-size: calc(15px + 0.390625vw);
+}
+
+p{
+    padding: 0px;
+    margin: 0px;
+}
+
+body{
+    margin: 0;
+    padding-top: 0px;
+    padding-left: 0px;
+}
+
+@font-face {
+    font-family: 'optima_stdmedium';
+    src: url('../optimaltstd-medium-webfont.woff2') format('woff2'),
+        url('../optimaltstd-medium-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+} 

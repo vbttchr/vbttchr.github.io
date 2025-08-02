@@ -1,0 +1,33 @@
+
+.fadeout-image{
+    display: flex;
+    align-items: flex-end;
+    padding-top:50%;
+    background:
+        linear-gradient(to top, transparent 30%, white 90%),
+        linear-gradient(to right, rgb(174, 176, 175) 0%, rgba(110, 115, 121, 1) 25%, rgba(89, 97, 103, 1) 50%,  63%, rgba(159, 159, 153, 1) 75%, rgba(201, 201, 193, 1) 88%, rgba(158, 170, 168, 1) 100%);
+        /* linear-gradient(to right, rgba(219, 224, 223, 1) 0%, rgba(225, 225, 225, 1) 13%, rgba(110, 115, 121, 1) 25%, rgba(213, 195, 176, 1) 38%, rgba(89, 97, 103, 1) 50%, rgba(231, 235, 230, 1) 63%, rgba(159, 159, 153, 1) 75%, rgba(201, 201, 193, 1) 88%, rgba(158, 170, 168, 1) 100%); */
+}
+
+.about-image{
+    height:auto;
+    width: 100%;
+}
+
+.home-message{
+    display: flex;
+    position: fixed;
+    flex-wrap: nowrap;
+    bottom: 50px;
+    left: 50px;
+    font-size: 50px;
+    background: linear-gradient(to left, #696969 40%, #fff 60%);
+    background-clip: text;
+    background-position: right bottom;
+    color: transparent;
+    background-size: 400% 100%;
+    transition: background-position 1.5s ease;
+}
+.home-message:hover{
+    background-position:left bottom;
+}
