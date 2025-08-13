@@ -1,7 +1,10 @@
 
 .fadeout-image{
-    display: flex;
-    align-items: flex-end;
+    display: block;
+    position:absolute;
+    z-index:2;
+    top:50vh;
+    /* align-items: flex-end; */
     padding-top:50%;
     background:
         linear-gradient(to top, transparent 30%, white 90%),
@@ -14,20 +17,30 @@
     width: 100%;
 }
 
-.home-message{
-    display: flex;
-    position: fixed;
-    flex-wrap: nowrap;
-    bottom: 50px;
-    left: 50px;
-    font-size: 50px;
-    background: linear-gradient(to left, #696969 40%, #fff 60%);
-    background-clip: text;
-    background-position: right bottom;
-    color: transparent;
-    background-size: 400% 100%;
-    transition: background-position 1.5s ease;
+.info{
+  z-index: 10;
+  /* display: block; */
+  /* position: relative; */
+  /* flex-wrap: nowrap; */
+  /* flex-direction: row; */
+  /* align-items: flex-end; */
+  /* bottom: 50px; */
+  /* left: 50px; */
+  /* height:auto; */
+  /* font-size: 50px; */
+  /* background: linear-gradient(to left,rgba(0, 0, 0, 0.873) 40%, #000000 60%);
+  background-clip: text;
+  background-position: right bottom;
+  color: transparent; */
+  /* color: black; */
+  /* background-size: 400% 100%; */
+  /* transition: background-position 1.5s ease; */
 }
-.home-message:hover{
+
+.info-paragraph{
+  z-index:10;
+  padding: 1em;
+}
+/* .info:hover{
     background-position:left bottom;
-}
+} */
