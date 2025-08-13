@@ -109,7 +109,12 @@
 </main>
 </body>
 <script>
-document.addEventListener("DOMContentLoaded", () => {
+window.addEventListener("load", () => {
+  initEntries();
+});
+// document.addEventListener("DOMContentLoaded", () => {
+
+function initEntries() {
   const entries = document.querySelectorAll('.entry-wrapper');
   const overlay = document.querySelector('.overlay')
   const scale = 1.4;
@@ -250,6 +255,6 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   });
-});
+};
 </script>
 </html>
