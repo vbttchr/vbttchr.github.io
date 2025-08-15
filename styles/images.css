@@ -1,8 +1,14 @@
+/* Block all clicks while animating */
+body.is-animating, body.is-animating * {
+  pointer-events: none !important;
+  cursor: progress; /* optional */
+}
+
 .images{
     background-color: black;
     margin: 0px;
     padding-top: 15vh;
-    color: var(--cream);
+    color: var(--white);
 }
 
 .overlay {
@@ -16,10 +22,8 @@
   opacity: 0;
   transition: opacity 1.2s ease 0.2s;
   backdrop-filter: blur(4px);
-}
-
-.overlay {
-  z-index: 100;
+  pointer-events: none; z-index: 100; 
+    z-index: 100;
 }
 
 .overlay.visible {
@@ -49,11 +53,25 @@
   cursor: pointer;
 }
 
+/* Focused entry sits above overlay */
+.entry-wrapper.z-top { position: relative; z-index: 200; }
+
 .entry-image{
   position: relative;
   width: 100%;
   display: block;
   z-index: 3;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-radius: 2px; 
+}
+
+.entry-image.hover-enabled:hover {
+  transform: scale(1.01) translate(4px, 4px); 
+  box-shadow: 4px 8px 20px rgba(101, 101, 101, 0.734);
+}
+
+.entry-image.hover-enabled {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .entry-info{
@@ -90,6 +108,11 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  font-weight: bold;
+}
+
+span.increaseSize {
+  font-size: 1.4em
 }
 
 .description{
@@ -97,6 +120,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  /* font-style: italic; */
 }
 
 .entry-box-svg{
@@ -112,7 +136,7 @@
   --StrokeDashArray: 800,0;
   --StrokeDashOffset:-37.5;
   --StrokeWidth: 2;
-  stroke: var(--cream);
+  stroke: var(--white);
   stroke-width: var(--StrokeWidth);
   stroke-linecap: round;
   stroke-dasharray: var(--StrokeDashArray);
@@ -125,7 +149,7 @@
   --StrokeDashArray: 800,0;
   --StrokeDashOffset:0;
   --StrokeWidth: 2;
-  stroke: var(--cream);
+  stroke: var(--white);
   stroke-width: var(--StrokeWidth);
   stroke-linecap: round;
   stroke-dasharray: var(--StrokeDashArray);
@@ -179,7 +203,7 @@
 }
 
 .header-navbar ul li a{
-  color: var(--cream);
+  color: var(--white);
 }
 
 .header-navbar ul li a:hover{
