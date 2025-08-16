@@ -112,7 +112,6 @@
 window.addEventListener("load", () => {
   initEntries();
 });
-// document.addEventListener("DOMContentLoaded", () => {
 
 function initEntries() {
   const entries = document.querySelectorAll('.entry-wrapper');
@@ -127,15 +126,11 @@ function initEntries() {
 
   function updateHoverState() {
     const anyFocused = Array.from(entries).some(entry => entry.dataset.focused === "true");
-    containers.forEach(c => {
-      if (anyFocused) c.classList.remove('hover-enabled');
-      else c.classList.add('hover-enabled');
+    entries.forEach(e => {
+      if (anyFocused) e.classList.remove('hover-enabled');
+      else e.classList.add('hover-enabled');
     });
   }
-  
-  // if (!anyFocused) {
-  //   containers.forEach(c => c.classList.add('hover-enabled'));
-  // }
 
   entries.forEach(entry => {
     // Define important metrics
@@ -196,28 +191,15 @@ function initEntries() {
         const rect = entry.getBoundingClientRect();
         const offsetX = (window.innerWidth / 2 - (rect.left + rect.width / 2)) / scale;
         const offsetY = (window.innerHeight / 2 - (rect.top + rect.height / 2)) / scale;
-        // const viewportCenterX = window.innerWidth / 2;
-        // const viewportCenterY = window.innerHeight / 2;
-
-        // const entryCenterX = rect.left + rect.width / 2;
-        // const entryCenterY = rect.top + rect.height / 2;
-
-        // const offsetX = (viewportCenterX - entryCenterX) / scale;
-        // const offsetY = (viewportCenterY - entryCenterY) / scale;
 
         entry.style.transform = `scale(${scale}) translate(${offsetX}px, ${offsetY}px)`;
-        // Translate the block down by its own height
+
         entryInfo.style.transform = `translateY(${entryInfo.offsetHeight + strokeWidth}px)`;
-        // const entryInfoHeight = entryInfo.offsetHeight;
 
-        
-        // entryInfo.style.transform = `translateY(${entryInfoHeight+strokeWidth}px)`;
-
-        // Set border style
         boxRect.style.setProperty('--StrokeDashOffset',`${-xLen/2+boxRectLength/2}`) 
         boxRect.style.setProperty('--StrokeDashArray', `${boxRectLength},0`)
         pinPath.style.setProperty('--StrokeDashArray', `${pinPathLength},0`)
-        //Change overlay opacity for blurryness
+
         overlay.classList.add("visible");
         const handleFocusTransitionEnd = () => {
             boxRect.classList.remove('grow-transition')
@@ -242,7 +224,7 @@ function initEntries() {
         boxRect.style.setProperty('--StrokeDashArray', `0,${boxRectLength}`)
         pinPath.style.setProperty('--StrokeDashArray', `0,${pinPathLength}`)
         
-        entry.style.transform = `scale(1)`;
+        // entry.style.transform = `scale(1)`;
         entryInfo.style.transform = `translateY(0px)`;
 
         // Wait for both entry and entryInfo to finish transitioning
@@ -258,18 +240,23 @@ function initEntries() {
           transitionEnded(entry),
           transitionEnded(entryInfo)
         ]).then(() => {
+          // entry.style.transform = "";
+          // entryInfo.style.transform = "";
           overlay.classList.remove("visible");
           entry.classList.remove('shrink-transition')
           boxRect.classList.remove('shrink-transition')
-          pinPath.classList.remove('shrrink-transition')
+          pinPath.classList.remove('shrink-transition')
+
           setTimeout(() => {
             entry.classList.remove('z-top')
           }, 1000);
+
           entry.dataset.focused = "false";
           currFocusedEntry = null;
           blocker.classList.remove('active');
           updateHoverState();
         });
+
       }
 
       if (entry.dataset.focused==="false") {
