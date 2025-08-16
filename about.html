@@ -26,30 +26,37 @@
             </ul>
         </div>
     </div>
-    <div class="info">
-      <p class="info-paragraph"">Hello, my name is Victor.
-        I like applying data science and programming to tackle challenges
-        in catalysis and inorganic chemistry.
+    <div class="info" id="hideme">
+      <p class="info-paragraph">hi!</p>
+      <p class="info-paragraph">my name is victor and i am a phd student
+        synthesizing and testing heterogeneous catalysts, learning from their 
+        behaviour in important chemical reactions by programming applied machine 
+        learning models and other data science tools.<br><br>this endeavour started 
+        in december 2024 and as soon as there is something readable, i will share it here.
       </p>
-      <p class="info-paragraph">Welcome to my site!</p>
-      <p class="info-paragraph">Welcome to my site!</p>
-      <p class="info-paragraph">Welcome to my site!</p>
-      <p class="info-paragraph">Welcome to my site!</p>
-      <p class="info-paragraph">Welcome to my site!</p>
-      <p class="info-paragraph">Welcome to my site!</p>
-      <p class="info-paragraph">Welcome to my site!</p>
-      <p class="info-paragraph">Welcome to my site!</p>
-      <p class="info-paragraph">Welcome to my site!</p>
-      <p class="info-paragraph">Welcome to my site!</p>
-      <p class="info-paragraph">Welcome to my site!</p>
-      <p class="info-paragraph">Welcome to my site!</p>
-      <p class="info-paragraph">Welcome to my site!</p>
-      <p class="info-paragraph">Welcome to my site!</p>
-      <p class="info-paragraph">Welcome to my site!</p>
-      <p class="info-paragraph">Welcome to my site!</p>
+      <p class="info-paragraph">beside this i enjoy reading novels, taking 
+        pictures on 35mm film - ideally both at a museum in my vicinity.
+        <br>why not check out some pictures on film under<a href="images.html"><span>Images</span></a></p>
+      <p class="info-paragraph">coffee, tea and brutalist architecture are some
+        other things i enjoy a lot as well.
+      </p>
+      <p class="info-paragraph">feel free to reach out to me regarding whatever you find 
+        relevant through<a href="mailto:vboettcher@student.ethz.ch"><span>my email</span></a>
+      </p>
     </div>
     <div class="fadeout-image">
-        <img class="about-image" src="./images/me-mod-5.png">
+      <img class="about-image" src="./images/me-mod-5.png">
     </div>
 </body>
+<script>
+  window.addEventListener(
+  "scroll",
+  function hideContent() {
+    var h = document.getElementById("hideme");
+
+    h.style.clipPath = "inset(" + this.window.pageYOffset + "px 0% 0% 0%)";
+  },
+  false
+);
+</script>
 </html>

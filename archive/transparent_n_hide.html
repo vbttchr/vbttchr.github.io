@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Sample Code - Feel free to copy and use</title>
+
+  <meta name="description" content="Hiding Content Behind Transparent Header" />
+  <style>
+    body {
+  /* Replace with a background image if you like */
+  background-image: linear-gradient(rgb(119, 0, 255), rgb(0, 225, 255));
+}
+
+#header-box {
+  position: sticky;
+  top: 0;
+  left: 0px;
+  width: 100vw;
+  height: 80px;
+  text-align: center;
+  font-family: sans-serif;
+  font-size: 30px;
+  color: white;
+}
+
+.gallery-box {
+  /* position: relative; */
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+}
+
+.box {
+  width: 60vw;
+  height: 800px;
+  padding-top: 16px;
+}
+
+.box p {
+  font-size: 34px;
+  text-align: left;
+}
+  </style>
+</head>
+
+<body>
+  <div id="header-box">
+    <p>My Transparent Header</p>
+  </div>
+
+  <div class="gallery-box" id="gallery">
+    <div class="box" id="lorem-one">
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla at massa diam. Duis tempus finibus efficitur. Sed nibh arcu, convallis eu massa quis, efficitur fringilla nisl. Maecenas risus est, ullamcorper quis magna eget, euismod vestibulum mi. Ut lacinia
+        eros vel nulla sollicitudin, a ultrices orci commodo. Donec ac justo vel eros aliquet egestas. Donec at sem non nulla tincidunt venenatis scelerisque eget risus. Sed tortor leo, lacinia viverra enim sit amet, tincidunt accumsan sem. Integer maximus
+        augue tempus lectus consectetur, eget aliquet lorem feugiat.
+      </p>
+    </div>
+
+    <div class="box" id="lorem-two">
+      <p>
+        Donec volutpat, ipsum eget pretium congue, diam mauris scelerisque orci, a vehicula felis lectus in risus. Nulla facilisi. Integer non sollicitudin nulla. Fusce vehicula ultricies dictum. Class aptent taciti sociosqu ad litora torquent per conubia nostra,
+        per inceptos himenaeos. Proin a semper risus, id bibendum neque. Sed condimentum condimentum sapien, vitae aliquet magna interdum ac. Sed tempor dui sed neque tristique posuere. Nunc vel rhoncus augue. Vestibulum quis aliquet purus, eu cursus
+        odio.
+      </p>
+    </div>
+
+    <div class="box" id="lorem-three">
+      <p>
+        Sed tristique dolor id nulla eleifend eleifend. Nam et turpis sed nisl elementum posuere. Suspendisse est metus, dictum ut sapien in, lacinia placerat libero. Nullam iaculis felis ut tortor porta sollicitudin. Fusce at est porttitor, congue tellus in,
+        euismod arcu. Nam vulputate vulputate aliquet. Ut commodo consequat magna, eget imperdiet urna condimentum eu. Vivamus sagittis mauris quis nisi tempus, nec interdum nisi tempus. Pellentesque habitant morbi tristique senectus et netus et malesuada
+        fames ac turpis egestas. Integer tempus eu tortor at mattis. Nam lacus magna, aliquet sed facilisis porta, consequat id eros. Pellentesque gravida nibh mi, a gravida lorem vestibulum ac.
+      </p>
+    </div>
+  </div>
+</body>
+<script>
+  window.addEventListener(
+  "scroll",
+  function hideContent() {
+    var h = document.getElementById("gallery");
+
+    h.style.clipPath = "inset(" + this.window.pageYOffset + "px 0% 0% 0%)";
+  },
+  false
+);
+</script>
+</html>
